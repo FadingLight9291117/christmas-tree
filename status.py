@@ -19,3 +19,4 @@ def recover_status(status):
     turtle.penup()
     turtle.setposition(begin_positon)
     turtle.setheading(begin_heading)
+    turtle.pendown()

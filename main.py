@@ -1,16 +1,21 @@
 import turtle
 
-from components import five_star, tree, flower, apple, snow
+from components import five_star, tree, flower, apple, random_snows
 
 
 def main():
+    # global attritutions
     title = 'Christmas tree by Arnaud.'
     speed = 'fastest'  # fastest, fast, normal, slow or slowest
-    n = 50  # 100
+    background_color = 'black'
+    n = 80  # 圣诞树尺寸，推荐100
 
+    # set global attri
     turtle.speed(speed)  # set speed
     turtle.title(title)
+    turtle.bgcolor(background_color)
 
+    # begin plot
     turtle.left(90)
     turtle.forward(3 * n)
 
@@ -22,13 +27,17 @@ def main():
     turtle.pendown()
 
     # plot tree rescursively
-    tree(15,  n)  # 15
+    tree(15, n, pensize=5)  # 15
 
     turtle.backward(n / 5)
-    turtle.pensize(1)
+
+    # snowing
+    random_snows(number=30,
+                 random_dens=[6, 9],
+                 random_size=[6, 10],
+                 random_color=False)
 
     turtle.done()
-
 
 
 if __name__ == '__main__':
