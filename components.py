@@ -138,6 +138,7 @@ def snow(snow_size=10, dens=8, color='white'):
     recover_status(begin_status)
 
 
+# some random snow
 def snowing(number=10, random_size: list = [], random_color=False, random_dens: list = False):
     status = record_status()
     w, h = turtle.screensize()
@@ -160,3 +161,13 @@ def snowing(number=10, random_size: list = [], random_color=False, random_dens: 
         snow(snow_size=snow_size if snow_size else 10, dens=dens if dens else 8,
              color=color if color else 'white')
     recover_status(status)
+
+def bell():
+    turtle.pu()
+    turtle.goto(0, -46)
+    turtle.pd()
+    turtle.pensize(3)
+    turtle.color("black", '#f8d102')
+    turtle.begin_fill()
+    turtle.circle(25)
+    turtle.end_fill()
