@@ -1,24 +1,8 @@
+import math
+
 import turtle
 
-
-# record turtle beginning status
-def record_status():
-    begin_pensize = turtle.pensize()
-    begin_color = turtle.color()
-    begin_positon = turtle.position()
-    begin_heading = turtle.heading()
-
-    return [begin_pensize, begin_color, begin_positon, begin_heading]
-
-
-# recover turtle beginning status
-def recover_status(status):
-    begin_pensize, begin_color, begin_positon, begin_heading = status
-    turtle.pensize(begin_pensize)
-    turtle.color(*begin_color)
-    turtle.penup()
-    turtle.setposition(begin_positon)
-    turtle.setheading(begin_heading)
+from status import record_status, recover_status
 
 
 # plot five star
@@ -79,7 +63,6 @@ def apple(size=None, color='red'):
 
 # plot a flower
 def flower(size=10, n=15, pensize=3, color_outline='red', color_fill='yellow'):
-    import math
 
     begin_status = record_status()
     turtle.pendown()
@@ -125,38 +108,3 @@ def snow(snow_size=10, dens=10, color_outline='black'):
     recover_status(begin_status)
 
 
-def main():
-    title = 'Christmas tree by Arnaud.'
-    speed = 'fastest'  # fastest, fast, normal, slow or slowest
-    n = 50  # 100
-
-    turtle.speed(speed)  # set speed
-    turtle.title(title)
-
-    turtle.left(90)
-    turtle.forward(3 * n)
-
-    # plot five star
-    five_star(n)
-
-    turtle.penup()
-    turtle.backward(n * 4.8)
-    turtle.pendown()
-
-    # plot tree rescursively
-    tree(15,  n)  # 15
-
-    turtle.backward(n / 5)
-    turtle.pensize(1)
-
-    turtle.done()
-
-
-def test():
-    snow()
-    turtle.done()
-
-
-if __name__ == '__main__':
-    test()
-    # main()
