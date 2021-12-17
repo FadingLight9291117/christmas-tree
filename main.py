@@ -1,6 +1,6 @@
 import turtle
 
-from components import five_star, tree, flower, apple, random_snows
+from components import five_star, tree, flower, apple, snowing
 
 
 def main():
@@ -32,7 +32,7 @@ def main():
     turtle.backward(n / 5)
 
     # snowing
-    random_snows(number=30,
+    snowing(number=30,
                  random_dens=[6, 9],
                  random_size=[6, 10],
                  random_color=False)
