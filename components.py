@@ -133,14 +133,14 @@ def snow(snow_size=10, dens=8, color='white'):
     turtle.pendown()
     # setting turtle attributions
     turtle.pensize(1)  # 定义笔头大小
-    turtle.pencolor(color)  # 定义画笔颜色为白色，其实就是雪花为白色
+    turtle.pencolor(color)  # 雪花为白色
     _snow()
     recover_status(begin_status)
 
 
 # some random snow
-def snowing(number=10, random_size: list = [], random_color=False, random_dens: list = False):
-    status = record_status()
+def snowing(number=10, random_size: list = [5, 10], random_color=False, random_dens: list = False):
+    begin_status = record_status()
     w, h = turtle.screensize()
     for _ in range(number):
         x = random.randint(-w, w)
@@ -158,16 +158,38 @@ def snowing(number=10, random_size: list = [], random_color=False, random_dens: 
             color = (r, g, b)
         if random_dens:
             dens = random.randint(random_dens[0], random_dens[1])
-        snow(snow_size=snow_size if snow_size else 10, dens=dens if dens else 8,
+        snow(snow_size=snow_size if snow_size else 10,
+             dens=dens if dens else 8,
              color=color if color else 'white')
-    recover_status(status)
+    recover_status(begin_status)
 
-def bell():
-    turtle.pu()
-    turtle.goto(0, -46)
-    turtle.pd()
-    turtle.pensize(3)
-    turtle.color("black", '#f8d102')
-    turtle.begin_fill()
-    turtle.circle(25)
-    turtle.end_fill()
+
+# 画铃铛
+def bell(size=10):
+    def _bell():
+        turtle.pensize(size / 8)  # 3
+        turtle.color("black", '#f8d102')
+        turtle.begin_fill()
+        turtle.circle(size)  # 25
+        turtle.end_fill()
+
+        turtle.penup()
+        b_heading = turtle.heading()
+        turtle.left(90)
+        turtle.forward(size / 3)  # 8
+        turtle.setheading(b_heading)
+        turtle.pendown()
+        turtle.pensize(size / 12)  # 2
+        turtle.color("black", '#79675d')
+        turtle.begin_fill()
+        turtle.circle(size / 5)  # 5
+        turtle.end_fill()
+
+        turtle.pensize(size / 8)  # 3
+        turtle.right(115)
+        turtle.forward(size / 3.5)  # 7
+
+    begin_status = record_status()
+    turtle.pendown()
+    _bell()
+    recover_status(begin_status)
