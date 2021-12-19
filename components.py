@@ -2,11 +2,10 @@ import math
 import random
 
 import turtle
-
 from status import record_status, recover_status
 
 
-# plot five star
+# 画五角星
 def five_star(n):
     def _five_star():
         turtle.begin_fill()
@@ -20,7 +19,7 @@ def five_star(n):
 
     begin_status = record_status()
     turtle.pendown()
-    # setting turtle attributions
+    # setting attributions
     turtle.pensize(5)
     turtle.color('orange', 'yellow')
     turtle.left(126)
@@ -29,8 +28,8 @@ def five_star(n):
     recover_status(begin_status)
 
 
-# plot leaves of tree
-def tree(d, s, pensize=2):
+# 画圣诞树
+def tree(d=15, s=100, pensize=2):
     def _tree(d, s):
         if d <= 0:
             return
@@ -45,7 +44,7 @@ def tree(d, s, pensize=2):
 
     begin_status = record_status()
     turtle.pendown()
-    # set turtle attributions
+    # set attributions
     turtle.pensize(pensize)
     turtle.color('dark green')
     # plot
@@ -53,8 +52,8 @@ def tree(d, s, pensize=2):
     recover_status(begin_status)
 
 
-# plot a apple
-def apple(size=20):
+# 画苹果
+def apple(size=10):
     def _apple():
         radius_s = size * 2 // 3
         radius_s2 = math.sqrt(2) / 3 * size
@@ -63,7 +62,6 @@ def apple(size=20):
         turtle.pencolor('orange')
         turtle.fillcolor('red')
         turtle.begin_fill()
-
         turtle.setheading(90)
         turtle.circle(size)
         turtle.end_fill()
@@ -95,8 +93,8 @@ def apple(size=20):
     recover_status(begin_status)
 
 
-# plot a flower
-def flower(size=10, n=15, pensize=3, color_outline='red', color_fill='yellow'):
+# 画花儿
+def flower(size=10, n=16, pen_size=3, color_='red'):
     def _flower():
         part_degree = 360 / n
         degree_left = 360 / n
@@ -112,16 +110,16 @@ def flower(size=10, n=15, pensize=3, color_outline='red', color_fill='yellow'):
 
     begin_status = record_status()
     turtle.pendown()
-    # set turtle attribute
-    turtle.pensize(pensize)
-    turtle.color(color_outline, color_fill)
+    # set attribute
+    turtle.pensize(pen_size)
+    turtle.color(color_, color_)
     turtle.begin_fill()
 
     _flower()
     recover_status(begin_status)
 
 
-# dens 雪花瓣数
+# 画雪花，dens: 雪花瓣数
 def snow(snow_size=10, dens=8, color='white'):
     def _snow():
         for _ in range(dens):  # 就是6，那就是画5次，也就是一个雪花五角星
@@ -131,14 +129,14 @@ def snow(snow_size=10, dens=8, color='white'):
 
     begin_status = record_status()
     turtle.pendown()
-    # setting turtle attributions
+    # setting attributions
     turtle.pensize(1)  # 定义笔头大小
     turtle.pencolor(color)  # 雪花为白色
     _snow()
     recover_status(begin_status)
 
 
-# some random snow
+# 下雪，随机分布，随机大小的雪花，还可以随机颜色，随机瓣数
 def snowing(number=10, random_size: list = [5, 10], random_color=False, random_dens: list = False):
     begin_status = record_status()
     w, h = turtle.screensize()
@@ -187,9 +185,97 @@ def bell(size=10):
 
         turtle.pensize(size / 8)  # 3
         turtle.right(115)
-        turtle.forward(size / 3.5)  # 7
+        turtle.forward(size / 3)  # 7
 
     begin_status = record_status()
     turtle.pendown()
     _bell()
+    recover_status(begin_status)
+
+
+def decorate_tree(h=50, degree=0.1, size=10, decorators: list = None):
+    def decorate(begin_p=(0, 0)):
+        y_range = [0, h]
+        y = random.randint(*y_range)
+        x_range = [int(-(h - y) * math.tan(math.pi / 15)),
+                   int((h - y)*math.tan(math.pi / 15))]
+        x = random.randint(*x_range)
+        decorator = decorators[random.randint(0, len(decorators)-1)]
+        turtle.penup()
+        turtle.goto(x + begin_p[0], y + begin_p[1])
+        turtle.pendown()
+        decorator(size=10)
+
+    begin_status = record_status()
+    turtle.pendown()
+    for _ in range(int(h * degree)):
+        decorate(begin_p=begin_status[2])
+
+    recover_status(begin_status)
+
+
+def gift_box(size=50):
+    def _gift_box():
+        colors = ['red', 'green', 'blue', 'pink', 'purple', 'brown', 'white']
+        rand1 = random.randint(0, len(colors) - 1)
+        rand2 = random.randint(0, len(colors) - 1)
+        while rand1 == rand2:
+            rand2 = random.randint(0, len(colors))
+        color1 = colors[rand1]
+        color2 = colors[rand2]
+        h = size
+        w = size
+
+        # begin plot
+        turtle.pencolor('yellow')
+        # body
+        turtle.fillcolor(color1)
+        turtle.begin_fill()
+        turtle.left(30)
+        turtle.forward(w)
+        turtle.right(120)
+        turtle.forward(h)
+        turtle.aright(60)
+        turtle.forward(w)
+        turtle.right(120)
+        turtle.forward(h)
+        turtle.left(60)
+        turtle.forward(w)
+        turtle.left(120)
+        turtle.forward(h)
+        turtle.left(60)
+        turtle.forward(w)
+        turtle.left(120)
+        turtle.forward(h)
+        turtle.end_fill()
+        # head
+        turtle.fillcolor(color2)
+        turtle.begin_fill()
+        turtle.left(60)
+        turtle.forward(int(w * 1.1))
+        turtle.right(60)
+        turtle.forwardint(h * 0.2)
+        turtle.right(120)
+        turtle.forward(int(w * 1.1))
+        turtle.right(60)
+        turtle.forward(int(h * 0.2))
+        turtle.left(120)
+        turtle.forward(int(w * 1.1))
+        turtle.left(60)
+        turtle.forward(int(h * 0.2))
+        turtle.left(120)
+        turtle.forward(int(w * 1.1))
+        turtle.right(60)
+        turtle.forward(int(w * 1.1))
+        turtle.right(120)
+        turtle.forward(int(w * 1.1))
+        turtle.right(60)
+        turtle.forward(int(w * 1.1))
+        turtle.right(120)
+        turtle.forward(int(w * 1.1))
+        turtle.end_fill()
+
+    begin_status = record_status()
+    turtle.pendown()
+    _gift_box()
     recover_status(begin_status)

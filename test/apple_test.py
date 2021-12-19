@@ -4,6 +4,8 @@ from components import apple
 
 turtle.speed(4)
 
-apple(size=20)
+apple(size=10)
+
+turtle.hideturtle()
 
 turtle.done()

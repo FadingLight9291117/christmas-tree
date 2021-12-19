@@ -5,6 +5,7 @@ from components import bell
 
 turtle.speed(1)
 
-bell()
+bell(10)
 
+turtle.hideturtle()
 turtle.done()
