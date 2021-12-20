@@ -8,7 +8,10 @@ from status import record_status, recover_status
 
 
 # 下雪，随机分布，随机大小的雪花，还可以随机颜色，随机瓣数
-def snowing(number=10, random_size: list = [5, 10], random_color=False, random_dens: list = False):
+def snowing(number=10,
+            random_size: list = [5, 10],
+            random_color=False,
+            random_dens: list = False):
     begin_status = record_status()
     w, h = turtle.screensize()
     for _ in range(number):
