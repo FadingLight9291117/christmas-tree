@@ -28,30 +28,6 @@ def five_star(n):
     recover_status(begin_status)
 
 
-# 画圣诞树
-def tree(d=15, s=100, pensize=2):
-    def _tree(d, s):
-        if d <= 0:
-            return
-        turtle.forward(s)
-        _tree(d - 1, s * 0.8)
-        turtle.right(120)
-        _tree(d - 3, s * 0.5)
-        turtle.right(120)
-        _tree(d - 3, s * 0.5)
-        turtle.right(120)
-        turtle.backward(s)
-
-    begin_status = record_status()
-    turtle.pendown()
-    # set attributions
-    turtle.pensize(pensize)
-    turtle.color('dark green')
-    # plot
-    _tree(d, s)
-    recover_status(begin_status)
-
-
 # 画苹果
 def apple(size=10):
     def _apple():
@@ -94,7 +70,7 @@ def apple(size=10):
 
 
 # 画花儿
-def flower(size=10, n=16, pen_size=3, color_='red'):
+def flower(size=10, n=16, pen_size=3, random_color=True, color='red'):
     def _flower():
         part_degree = 360 / n
         degree_left = 360 / n
@@ -112,7 +88,14 @@ def flower(size=10, n=16, pen_size=3, color_='red'):
     turtle.pendown()
     # set attribute
     turtle.pensize(pen_size)
-    turtle.color(color_, color_)
+    if random_color:
+        r = random.random()
+        g = random.random()
+        b = random.random()
+        turtle.pencolor(r, g, b)
+        turtle.fillcolor(r, g, b)
+    else:
+        turtle.color(color, color)
     turtle.begin_fill()
 
     _flower()
@@ -133,32 +116,6 @@ def snow(snow_size=10, dens=8, color='white'):
     turtle.pensize(1)  # 定义笔头大小
     turtle.pencolor(color)  # 雪花为白色
     _snow()
-    recover_status(begin_status)
-
-
-# 下雪，随机分布，随机大小的雪花，还可以随机颜色，随机瓣数
-def snowing(number=10, random_size: list = [5, 10], random_color=False, random_dens: list = False):
-    begin_status = record_status()
-    w, h = turtle.screensize()
-    for _ in range(number):
-        x = random.randint(-w, w)
-        y = random.randint(-h, h)
-        turtle.penup()
-        turtle.goto(x, y)
-        turtle.pendown()
-        if random_size:
-            snow_size = random.randint(random_size[0], random_size[1])
-        color = None
-        if random_color:
-            r = random.randint(0, 255) / 255
-            g = random.randint(0, 255) / 255
-            b = random.randint(0, 255) / 255
-            color = (r, g, b)
-        if random_dens:
-            dens = random.randint(random_dens[0], random_dens[1])
-        snow(snow_size=snow_size if snow_size else 10,
-             dens=dens if dens else 8,
-             color=color if color else 'white')
     recover_status(begin_status)
 
 
@@ -190,27 +147,6 @@ def bell(size=10):
     begin_status = record_status()
     turtle.pendown()
     _bell()
-    recover_status(begin_status)
-
-
-def decorate_tree(h=50, degree=0.1, size=10, decorators: list = None):
-    def decorate(begin_p=(0, 0)):
-        y_range = [0, h]
-        y = random.randint(*y_range)
-        x_range = [int(-(h - y) * math.tan(math.pi / 15)),
-                   int((h - y)*math.tan(math.pi / 15))]
-        x = random.randint(*x_range)
-        decorator = decorators[random.randint(0, len(decorators)-1)]
-        turtle.penup()
-        turtle.goto(x + begin_p[0], y + begin_p[1])
-        turtle.pendown()
-        decorator(size=10)
-
-    begin_status = record_status()
-    turtle.pendown()
-    for _ in range(int(h * degree)):
-        decorate(begin_p=begin_status[2])
-
     recover_status(begin_status)
 
 
@@ -278,4 +214,34 @@ def gift_box(size=50):
     begin_status = record_status()
     turtle.pendown()
     _gift_box()
+    recover_status(begin_status)
+
+
+# 画圣诞树, decorators: 圣诞树上的装饰品
+def tree(d=15, s=100, pensize=2, decorators: list = None, dense=0.1,  size=5):
+    def _tree(d, s):
+        if d <= 0:
+            return
+        turtle.forward(s)
+        _tree(d - 1, s * 0.8)
+        turtle.right(120)
+        _tree(d - 3, s * 0.5)
+        turtle.right(120)
+        _tree(d - 3, s * 0.5)
+        turtle.right(120)
+        turtle.backward(s)
+        # plot decorator
+        if decorators is not None and len(decorators) > 0:
+            number = random.random()
+            if number < dense:
+                decorator = decorators[random.randint(0, len(decorators) - 1)]
+                decorator(size=size)
+
+    begin_status = record_status()
+    turtle.pendown()
+    # set attributions
+    turtle.pensize(pensize)
+    turtle.color('dark green')
+    # plot
+    _tree(d, s)
     recover_status(begin_status)
