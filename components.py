@@ -245,3 +245,44 @@ def tree(d=15, s=100, pensize=2, decorators: list = None, dense=0.1,  size=5):
     # plot
     _tree(d, s)
     recover_status(begin_status)
+
+
+# 下雪，随机分布，随机大小的雪花，还可以随机颜色，随机瓣数
+def snowing(number=10,
+            random_size: list = [5, 10],
+            random_color=False,
+            random_dens: list = False):
+    begin_status = record_status()
+    w, h = turtle.screensize()
+    for _ in range(number):
+        x = random.randint(-w, w)
+        y = random.randint(-h, h)
+        turtle.penup()
+        turtle.goto(x, y)
+        turtle.pendown()
+        if random_size:
+            snow_size = random.randint(random_size[0], random_size[1])
+        color = None
+        if random_color:
+            r = random.randint(0, 255) / 255
+            g = random.randint(0, 255) / 255
+            b = random.randint(0, 255) / 255
+            color = (r, g, b)
+        if random_dens:
+            dens = random.randint(random_dens[0], random_dens[1])
+        snow(snow_size=snow_size if snow_size else 10,
+             dens=dens if dens else 8,
+             color=color if color else 'white')
+    recover_status(begin_status)
+
+
+def fallen_flowers(number=200, size=3, wh: list = (500, 15), colors=['red', 'yellow', 'orange']):
+    w, h = wh
+    c_x, c_y = turtle.position()
+    for _ in range(number):
+        x = random.randint(int(-w / 2 + c_x), int(w / 2 + c_x))
+        y = random.randint(int(-h / 2 + c_y), int(h / 2 + c_y))
+        color = colors[random.randint(0, len(colors)-1)]
+        turtle.penup()
+        turtle.goto(x, y)
+        flower(size=size, random_color=False, color=color)
