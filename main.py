@@ -47,7 +47,7 @@ def main():
     fallen_flowers(number=200,
                    size=3,
                    wh=(500, 15))
-                   
+
     # todo: 画地上的礼物盒子
 
     # 下雪
