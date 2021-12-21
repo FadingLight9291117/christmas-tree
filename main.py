@@ -3,7 +3,7 @@ import random
 import turtle
 
 from components import \
-    five_star, tree, flower, apple, bell, snow, fallen_flowers, snowing
+    five_star, tree, flower, apple, bell, snow, fallen_flowers, snowing, gift_box
 
 
 def main():
@@ -12,7 +12,7 @@ def main():
     # 绘画速度(fastest, fast, normal, slow or slowest)
     speed = 'fastest'
     background_color = 'black'          # 背景色
-    n = 100                              # 圣诞树尺寸，推荐100
+    n = 100                             # 圣诞树尺寸，推荐100
 
     # set global attri
     turtle.speed(speed)
@@ -38,20 +38,33 @@ def main():
          pensize=4,                         # 树枝尺寸
          decorators=[apple, flower, bell],  # 树上的装饰品
          dense=0.05,                        # 树上装饰品密度
-         size=6)                            # 树上装饰品尺寸
+         size=10)                           # 树上装饰品尺寸
 
     turtle.penup()
-    turtle.backward(n / 4)
+    turtle.backward(int(n * 0.6))
     turtle.pendown()
-    # todo: 画地上的落花
+
+    # 画地上的礼物盒子
+    turtle.penup()
+    turtle.right(90)
+    turtle.forward(300)
+    gift_box(size=30)
+    turtle.penup()
+    turtle.backward(50)
+    gift_box(size=40)
+    turtle.penup()
+    turtle.backward(250)
+
+    # 画地上的落花
+    turtle.penup()
+    turtle.right(90)
+    turtle.forward(30)
     fallen_flowers(number=200,
                    size=3,
-                   wh=(500, 15))
-
-    # todo: 画地上的礼物盒子
+                   wh=(800, 20))
 
     # 下雪
-    snowing(number=100,             # 雪花数量
+    snowing(number=60,              # 雪花数量
             random_dens=[6, 9],     # 随机瓣数
             random_size=[6, 10],    # 随机雪花尺寸
             random_color=False)     # 随机雪花颜色

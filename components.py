@@ -171,7 +171,7 @@ def gift_box(size=50):
         turtle.forward(w)
         turtle.right(120)
         turtle.forward(h)
-        turtle.aright(60)
+        turtle.right(60)
         turtle.forward(w)
         turtle.right(120)
         turtle.forward(h)
@@ -190,7 +190,7 @@ def gift_box(size=50):
         turtle.left(60)
         turtle.forward(int(w * 1.1))
         turtle.right(60)
-        turtle.forwardint(h * 0.2)
+        turtle.forward(int(h * 0.2))
         turtle.right(120)
         turtle.forward(int(w * 1.1))
         turtle.right(60)
@@ -277,6 +277,7 @@ def snowing(number=10,
 
 
 def fallen_flowers(number=200, size=3, wh: list = (500, 15), colors=['red', 'yellow', 'orange']):
+    begin_status = record_status()
     w, h = wh
     c_x, c_y = turtle.position()
     for _ in range(number):
@@ -286,3 +287,5 @@ def fallen_flowers(number=200, size=3, wh: list = (500, 15), colors=['red', 'yel
         turtle.penup()
         turtle.goto(x, y)
         flower(size=size, random_color=False, color=color)
+
+    recover_status(begin_status)
