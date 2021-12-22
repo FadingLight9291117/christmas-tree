@@ -103,7 +103,7 @@ def main():
     turtle.pendown()
     hat(size=word_size, angle=10)
 
-    # finish
+    # all finish.
     turtle.hideturtle()
     turtle.done()
 
