@@ -2,6 +2,7 @@ import math
 import random
 
 import turtle
+from typing_extensions import runtime
 from status import record_status, recover_status
 
 
@@ -291,13 +292,165 @@ def fallen_flowers(number=200, size=3, wh: list = (500, 15), colors=['red', 'yel
     recover_status(begin_status)
 
 
-def words(ws="Just"):
-    ws = ws.upper()
-    ws = list(ws)
+def snowman(size=100):
+    r1 = size // 2
+    r2 = int(r1 * 0.6)
 
-    def letter(alphe='A', size=10):
-        ...
+    def body():
+        be = record_status()
 
-    begin_status = record_status()
+        turtle.fillcolor('white')
+        turtle.begin_fill()
+        turtle.circle(r1, 180)
+        turtle.circle(-r2)
+        turtle.circle(r1, 180)
+        turtle.end_fill()
 
-    recover_status(begin_status)
+        # decorate
+        turtle.pu()
+        turtle.left(90)
+        turtle.forward(r1 * 2 // 3)
+        turtle.pd()
+        turtle.color('black', 'black')
+        turtle.begin_fill()
+        turtle.circle(r1 // 10)
+        turtle.end_fill()
+        turtle.pu()
+        turtle.forward(r1 * 2 // 3)
+        turtle.pd()
+        turtle.begin_fill()
+        turtle.circle(r1 // 10)
+        turtle.end_fill()
+        turtle.pu()
+
+        # mouth
+        turtle.fd(r1 * 2 // 3 + r2 * 2 // 3)
+        turtle.pd()
+        turtle.right(90)
+        turtle.circle(r2 // 4, 90)
+        turtle.left(180)
+        turtle.circle(-r2 // 4, 180)
+        turtle.left(180)
+        turtle.circle(r2 // 4, 90)
+
+        # eyes
+        turtle.left(90)
+        turtle.pu()
+        turtle.fd(r2 * 2 // 3)
+        turtle.left(90)
+        turtle.forward(r2 // 4)
+        turtle.pd()
+        turtle.fillcolor('black')
+        turtle.begin_fill()
+        turtle.circle(r2 // 10)
+        turtle.end_fill()
+        turtle.pu()
+        turtle.backward(r2 * 2 // 5)
+        turtle.pd()
+        turtle.begin_fill()
+        turtle.circle(r2 // 10)
+        turtle.end_fill()
+
+        recover_status(be)
+
+    def hand():
+        be = record_status()
+
+        turtle.pencolor('brown')
+        turtle.pensize(r1 // 10)
+        turtle.pu()
+        turtle.circle(r1, 120)
+        turtle.right(90)
+        turtle.pd()
+        turtle.forward(r1)
+        turtle.backward(r1 // 2)
+        turtle.left(60)
+        turtle.forward(r1 // 2)
+        turtle.backward(r1 // 2)
+        turtle.right(120)
+        turtle.forward(r1 // 2)
+        turtle.backward(r1 // 2)
+        turtle.left(60)
+        turtle.backward(r1 // 2)
+        turtle.left(90)
+
+        turtle.pencolor('white')
+        turtle.circle(r1, 120)
+        turtle.right(90)
+        turtle.pencolor('brown')
+        turtle.forward(r1)
+        turtle.backward(r1 // 2)
+        turtle.left(60)
+        turtle.forward(r1 // 2)
+        turtle.backward(r1 // 2)
+        turtle.right(120)
+        turtle.forward(r1 // 2)
+        turtle.backward(r1 // 2)
+        turtle.left(60)
+        turtle.backward(r1 // 2)
+
+        recover_status(be)
+
+    def _hat():
+        be = record_status()
+        turtle.pu()
+        turtle.left(90)
+        turtle.fd(r1 * 2 + r2 * 2)
+        turtle.fd(2)
+
+        turtle.right(90)
+        hat(r2)
+
+        recover_status(be)
+
+    be = record_status()
+    turtle.pencolor('white')
+    turtle.pensize(1)
+    body()
+    hand()
+    _hat()
+    recover_status(be)
+
+
+def hat(size=100, angle=0):
+    def _hat():
+        r1 = size
+        turtle.left(180)
+        turtle.begin_fill()
+        turtle.circle(r1, 30)
+        turtle.right(120)
+        turtle.fd(r1 // 5)
+        turtle.right(60)
+        turtle.circle(-r1, 60)
+        turtle.right(60)
+        turtle.fd(r1 // 5)
+        turtle.right(120)
+        turtle.circle(r1, 30)
+        turtle.end_fill()
+
+        turtle.circle(r1, 30)
+        turtle.right(120)
+        turtle.fd(r1 // 5)
+        turtle.right(30)
+        turtle.color('yellow', 'red')
+        turtle.begin_fill()
+        turtle.fd(r1)
+        turtle.right(120)
+        turtle.fd(r1)
+        turtle.right(150)
+        turtle.circle(r1, 60)
+        turtle.end_fill()
+        turtle.right(120)
+        turtle.right(30)
+        turtle.fd(r1)
+        turtle.fillcolor('white')
+        turtle.begin_fill()
+        turtle.circle(-r1 // 10)
+        turtle.end_fill()
+
+    be = record_status()
+    turtle.pd()
+    turtle.color('yellow', 'white')
+    turtle.right(angle)
+    _hat()
+    recover_status(be)

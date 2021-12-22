@@ -219,6 +219,8 @@ def dot(size=10, angle=5):
 
 
 def just_for_why(size=25, pensize=5, color='orange', angle=0):
+    be = record_status()
+
     turtle.pensize(pensize)
     turtle.pencolor(color)
 
@@ -244,6 +246,7 @@ def just_for_why(size=25, pensize=5, color='orange', angle=0):
         turtle.forward(size)
         turtle.pendown()
 
+    recover_status(be)
 
 if __name__ == '__main__':
     just_for_why()

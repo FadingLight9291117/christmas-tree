@@ -3,7 +3,9 @@ import random
 import turtle
 
 from components import \
-    five_star, tree, flower, apple, bell, fallen_flowers, snowing, gift_box
+    five_star, tree, flower, apple, bell, fallen_flowers, snowing, gift_box, \
+    snowman, hat
+
 
 from words import just_for_why
 
@@ -39,7 +41,7 @@ def main():
          s=n,
          pensize=4,                         # 树枝尺寸
          decorators=[apple, flower, bell],  # 树上的装饰品
-         dense=0.05,                        # 树上装饰品密度
+         dense=0.02,                        # 树上装饰品密度
          size=10)                           # 树上装饰品尺寸
 
     turtle.penup()
@@ -57,10 +59,21 @@ def main():
     turtle.penup()
     turtle.backward(250)
 
+    # 画雪人
+    turtle.penup()
+    turtle.backward(300)
+    snowman(size=80)
+    turtle.penup()
+    turtle.backward(50)
+    snowman(size=100)
+    turtle.penup()
+    turtle.forward(350)
+
     # 画地上的落花
     turtle.penup()
     turtle.left(90)
     turtle.backward(30)
+    turtle.right(90)
     fallen_flowers(number=200,      # 落花数量
                    size=3,          # 落花尺寸
                    wh=(800, 20))    # 落花范围
@@ -71,18 +84,26 @@ def main():
             random_size=[6, 10],    # 随机雪花尺寸
             random_color=False)     # 随机雪花颜色
 
-    # todo: 画雪人
-
+    turtle.left(90)
     turtle.penup()
     turtle.forward(400)
     turtle.right(90)
     turtle.forward(80)
     turtle.pendown()
+
     # 写字
-    just_for_why(size=30, pensize=5, color='yellow', angle=0)
+    word_size = 30
+    just_for_why(size=word_size, pensize=5, color='yellow', angle=0)
+    # 画字上面的圣诞帽
+    turtle.penup()
+    turtle.forward(10 * word_size + word_size // 2)
+    turtle.left(90)
+    turtle.forward(word_size + 10)
+    turtle.right(90)
+    turtle.pendown()
+    hat(size=word_size, angle=10)
 
-    # todo: 画圣诞帽
-
+    # finish
     turtle.hideturtle()
     turtle.done()
 
