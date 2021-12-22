@@ -3,9 +3,9 @@ import random
 import turtle
 
 from components import \
-    five_star, tree, flower, apple, bell, snow, fallen_flowers, snowing, gift_box
+    five_star, tree, flower, apple, bell, fallen_flowers, snowing, gift_box
 
-from letters import just_for_why
+from words import just_for_why
 
 
 def main():
@@ -71,13 +71,17 @@ def main():
             random_size=[6, 10],    # 随机雪花尺寸
             random_color=False)     # 随机雪花颜色
 
-    # todo: 写字
+    # todo: 画雪人
+
     turtle.penup()
     turtle.forward(400)
     turtle.right(90)
-    turtle.forward(100)
+    turtle.forward(80)
     turtle.pendown()
-    just_for_why(size=30, pensize=6, color='yellow', angle=0)
+    # 写字
+    just_for_why(size=30, pensize=5, color='yellow', angle=0)
+
+    # todo: 画圣诞帽
 
     turtle.hideturtle()
     turtle.done()

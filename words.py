@@ -54,16 +54,6 @@ def R(size=10, angle=5):
     recover_status(begin_status)
 
 
-def blank(size=10, angle=5):
-    begin_status = record_status()
-
-    turtle.penup()
-    turtle.forward(size)
-    turtle.pendown()
-
-    recover_status(begin_status)
-
-
 def J(size=10, angle=5):
     begin_status = record_status()
 
@@ -210,13 +200,32 @@ def Y(size=10, angle=5):
     recover_status(be)
 
 
+def blank(size=10, angle=5):
+    begin_status = record_status()
+
+    turtle.penup()
+    turtle.forward(size)
+    turtle.pendown()
+
+    recover_status(begin_status)
+
+
+def dot(size=10, angle=5):
+    be = record_status()
+
+    turtle.circle(1)
+
+    recover_status(be)
+
+
 def just_for_why(size=25, pensize=5, color='orange', angle=0):
     turtle.pensize(pensize)
     turtle.pencolor(color)
 
-    string = "Just for why".upper()
+    string = "Just for why.".upper()
     letter2func = {
         ' ': blank,
+        '.': dot,
         'J': J,
         'U': U,
         'S': S,
@@ -234,3 +243,8 @@ def just_for_why(size=25, pensize=5, color='orange', angle=0):
         turtle.penup()
         turtle.forward(size)
         turtle.pendown()
+
+
+if __name__ == '__main__':
+    just_for_why()
+    turtle.done()
