@@ -8,7 +8,7 @@ from components import \
 
 def main():
     # global attritutions
-    title = 'Christmas tree by Arnaud.'  # 窗口标题
+    title = 'Christmas tree by CLZ.'  # 窗口标题
     # 绘画速度(fastest, fast, normal, slow or slowest)
     speed = 'fastest'
     background_color = 'black'          # 背景色

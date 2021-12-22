@@ -289,3 +289,15 @@ def fallen_flowers(number=200, size=3, wh: list = (500, 15), colors=['red', 'yel
         flower(size=size, random_color=False, color=color)
 
     recover_status(begin_status)
+
+
+def words(ws="Just"):
+    ws = ws.upper()
+    ws = list(ws)
+
+    def letter(alphe='A', size=10):
+        ...
+
+    begin_status = record_status()
+
+    recover_status(begin_status)
