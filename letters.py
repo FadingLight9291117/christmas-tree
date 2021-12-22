@@ -1,4 +1,5 @@
 import turtle
+import math
 
 from status import record_status, recover_status
 
@@ -139,26 +140,81 @@ def T(size=10, angle=5):
 
 
 def W(size=10, angle=5):
-    ...
+    ang = 30
+    be = record_status()
+
+    turtle.pu()
+    turtle.forward(size // 2)
+    turtle.right(angle)
+    turtle.left(90)
+    turtle.forward(size)
+    turtle.pd()
+    ori_p = turtle.position()
+    ori_h = turtle.heading()
+    turtle.left(180 - ang / 2)
+    d = size // math.cos(ang / 2 / 180 * math.pi)
+    turtle.forward(d)
+    turtle.right(180 - ang)
+    turtle.forward(d)
+    turtle.pu()
+    turtle.setposition(ori_p)
+    turtle.setheading(ori_h)
+    turtle.pd()
+    turtle.right(180 - ang / 2)
+    turtle.forward(d)
+    turtle.left(180 - ang)
+    turtle.forward(d)
+
+    recover_status(be)
 
 
 def H(size=10, angle=5):
-    ...
+    be = record_status()
+    turtle.pu()
+    turtle.forward(size // 2)
+    turtle.right(angle)
+    turtle.left(90)
+    turtle.forward(size // 2)
+    turtle.pendown()
+    turtle.left(90)
+    turtle.forward(size // 4)
+    turtle.right(90)
+    turtle.forward(size // 2)
+    turtle.backward(size)
+    turtle.fd(size // 2)
+    turtle.right(90)
+    turtle.fd(size // 2)
+    turtle.left(90)
+    turtle.fd(size // 2)
+    turtle.backward(size)
+
+    recover_status(be)
 
 
 def Y(size=10, angle=5):
-    ...
+    be = record_status()
+
+    turtle.pu()
+    turtle.forward(size // 2)
+    turtle.pd()
+    turtle.right(angle)
+    turtle.left(90)
+    turtle.fd(size // 2)
+    turtle.left(30)
+    d = size // math.sqrt(3)
+    turtle.fd(d)
+    turtle.backward(d)
+    turtle.right(60)
+    turtle.fd(d)
+
+    recover_status(be)
 
 
-if __name__ == '__main__':
-    size = 30
-    pensize = 5
-    color = 'orange'
-    angle = 0
+def just_for_why(size=25, pensize=5, color='orange', angle=0):
     turtle.pensize(pensize)
     turtle.pencolor(color)
 
-    string = "JUST FOR"
+    string = "Just for why".upper()
     letter2func = {
         ' ': blank,
         'J': J,
@@ -168,6 +224,9 @@ if __name__ == '__main__':
         'F': F,
         'O': O,
         'R': R,
+        'W': W,
+        'H': H,
+        'Y': Y,
     }
     for letter in string:
         func = letter2func[letter]
@@ -175,6 +234,3 @@ if __name__ == '__main__':
         turtle.penup()
         turtle.forward(size)
         turtle.pendown()
-
-    turtle.hideturtle()
-    turtle.done()

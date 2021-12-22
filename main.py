@@ -5,6 +5,8 @@ import turtle
 from components import \
     five_star, tree, flower, apple, bell, snow, fallen_flowers, snowing, gift_box
 
+from letters import just_for_why
+
 
 def main():
     # global attritutions
@@ -57,11 +59,11 @@ def main():
 
     # 画地上的落花
     turtle.penup()
-    turtle.right(90)
-    turtle.forward(30)
-    fallen_flowers(number=200,
-                   size=3,
-                   wh=(800, 20))
+    turtle.left(90)
+    turtle.backward(30)
+    fallen_flowers(number=200,      # 落花数量
+                   size=3,          # 落花尺寸
+                   wh=(800, 20))    # 落花范围
 
     # 下雪
     snowing(number=60,              # 雪花数量
@@ -70,7 +72,14 @@ def main():
             random_color=False)     # 随机雪花颜色
 
     # todo: 写字
+    turtle.penup()
+    turtle.forward(400)
+    turtle.right(90)
+    turtle.forward(100)
+    turtle.pendown()
+    just_for_why(size=30, pensize=6, color='yellow', angle=0)
 
+    turtle.hideturtle()
     turtle.done()
 
 

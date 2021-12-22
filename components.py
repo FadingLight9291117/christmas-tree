@@ -156,7 +156,7 @@ def gift_box(size=50):
         rand1 = random.randint(0, len(colors) - 1)
         rand2 = random.randint(0, len(colors) - 1)
         while rand1 == rand2:
-            rand2 = random.randint(0, len(colors))
+            rand2 = random.randint(0, len(colors) - 1)
         color1 = colors[rand1]
         color2 = colors[rand2]
         h = size
